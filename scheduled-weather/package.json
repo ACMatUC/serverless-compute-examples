@@ -1,0 +1,13 @@
+{
+  "name": "scheduled-weather",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "dependencies": {
+    "aws-sdk": "^2.389.0",
+    "dark-sky": "^1.1.5"
+  },
+  "devDependencies": {
+    "dotenv": "^6.2.0"
+  }
+}

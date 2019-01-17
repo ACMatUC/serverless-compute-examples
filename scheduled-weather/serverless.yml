@@ -1,0 +1,23 @@
+service: serverless-scheduled-weather
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  memorySize: 128
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - ses:SendEmail
+      Resource: "*"
+  environment:
+    DARK_SKY_API_KEY: ${file(./getEnv.js):getEnvVars.DARK_SKY_API_KEY}
+    EMAIL_ADDRESS: ${file(./getEnv.js):getEnvVars.EMAIL_ADDRESS}
+
+functions:
+  weather:
+    handler: index.handler
+    events:
+      - schedule: rate(1 minute)
